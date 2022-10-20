@@ -1,6 +1,6 @@
 #!/bin/sh
 
-PASSWORD=upvgtnar666@
+PASSWORD=
 num=235
 host=192.168.195.${num}
 	[ ! -d /NAS/IT/RPI/Pi-Sever/PiBlast ] && mkdir -p /NAS/IT/RPI/Pi-Sever/PiBlast/
