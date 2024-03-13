@@ -1,28 +1,18 @@
 #!/bin/sh
 
-PASSWORD=
-num=235
-host=192.168.195.${num}
-	[ ! -d /NAS/IT/RPI/Pi-Sever/PiBlast ] && mkdir -p /NAS/IT/RPI/Pi-Sever/PiBlast/
-	localpath=/NAS/IT/RPI/Pi-Sever/PiBlast/
-	remotepath="${host}:/usr/local/bin"
-	#echo $remotepath
-	sudo rsync -avz --rsh="sshpass -p ${PASSWORD} ssh -l root -oStrictHostKeyChecking=accept-new" "$localpath" "$remotepath"
+#ip list for raspberry pis
 
-PASSWORD=
-num=61
-host=192.168.195.${num}
-	[ ! -d /NAS/IT/RPI/Pi-Sever/PiBlast ] && mkdir -p /NAS/IT/RPI/Pi-Sever/PiBlast/
-	localpath=/NAS/IT/RPI/Pi-Sever/PiBlast/
-	remotepath="${host}:/usr/local/bin"
-	#echo $remotepath
-	sudo rsync -avz --rsh="sshpass -p ${PASSWORD} ssh -l root -oStrictHostKeyChecking=accept-new" "$localpath" "$remotepath"
+RaspberryPis=(100 101 102 103)
 
-PASSWORD=
-num=7
-host=192.168.195.${num}
-	[ ! -d /NAS/IT/RPI/Pi-Sever/PiBlast ] && mkdir -p /NAS/IT/RPI/Pi-Sever/PiBlast/
-	localpath=/NAS/IT/RPI/Pi-Sever/PiBlast/
-	remotepath="${host}:/usr/local/bin"
-	#echo $remotepath
-	sudo rsync -avz --rsh="sshpass -p ${PASSWORD} ssh -l root -oStrictHostKeyChecking=accept-new" "$localpath" "$remotepath"
+#loop through the list of raspberry pis and push the file to the remote server
+for i in "${RaspberryPis[@]}"
+do
+  host=192.168.0.${i}
+  [ ! -d /Path/to/local ] && mkdir -p /Path/to/local/
+  localpath=/Path/to/local/
+  remotepath="${host}:/path on remote server/"
+  #echo $remotepath
+  sudo rsync -avz -e "ssh -i /path/to/private/key" "$localpath" "$remotepath"
+done
+
+
